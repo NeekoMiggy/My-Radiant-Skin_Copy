@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     fontFamily: FontFamily.lilitaOne,
-    top: 0,
     left: "50%",
     textAlign: "center",
     position: "absolute",

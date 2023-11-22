@@ -48,9 +48,7 @@ const GettingStarted6 = () => {
 our built-in AI`}</Text>
       <Text
         style={[styles.loremIpsumDolor, styles.letsAnalyzeYourTypo]}
-      >{`Lorem ipsum dolor sit amet, consectetur 
-adipiscing elit. Donec egestas eros vel ultrices 
-feugiat.`}</Text>
+      >{``}</Text>
       <Image
         style={styles.keyboardArrowRightIcon}
         contentFit="cover"

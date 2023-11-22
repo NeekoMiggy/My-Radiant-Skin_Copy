@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { Text, StyleSheet, Pressable, View } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
@@ -9,6 +9,16 @@ import { FontSize, FontFamily, Color } from "../GlobalStyles";
 
 const GettingStarted4 = () => {
   const navigation = useNavigation();
+
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const handleButtonPress = (buttonText) => {
+    setSelectedButton(buttonText === selectedButton ? null : buttonText);
+  };
+
+  const isButtonSelected = (buttonText) => {
+    return selectedButton === buttonText;
+  };
 
   return (
     <View style={styles.gettingStarted4}>
@@ -49,30 +59,40 @@ const GettingStarted4 = () => {
         stateInactivePosition="absolute"
         stateInactiveTop={262}
         stateInactiveLeft={67}
+        selected={isButtonSelected("Normal")}
+        onPress={() => handleButtonPress("Normal")}
       />
       <StateInactive
         buttonText="Dry"
         stateInactivePosition="absolute"
         stateInactiveTop={329}
         stateInactiveLeft={65}
+        selected={isButtonSelected("Dry")}
+        onPress={() => handleButtonPress("Dry")}
       />
       <StateInactive
         buttonText="Oily"
         stateInactivePosition="absolute"
         stateInactiveTop={396}
         stateInactiveLeft={65}
+        selected={isButtonSelected("Oily")}
+        onPress={() => handleButtonPress("Oily")}
       />
       <StateInactive
         buttonText="Sensitive"
         stateInactivePosition="absolute"
         stateInactiveTop={463}
         stateInactiveLeft={65}
+        selected={isButtonSelected("Sensitive")}
+        onPress={() => handleButtonPress("Sensitive")}
       />
       <StateInactive
         buttonText="Combination"
         stateInactivePosition="absolute"
         stateInactiveTop={530}
         stateInactiveLeft={65}
+        selected={isButtonSelected("Combination")}
+        onPress={() => handleButtonPress("Combination")}
       />
       <Pressable
         onPress={() => navigation.navigate("GettingStarted5")}
@@ -95,6 +115,8 @@ const GettingStarted4 = () => {
         stateInactivePosition="absolute"
         stateInactiveTop={262}
         stateInactiveLeft={67}
+        selected={isButtonSelected("Normal")}
+        onPress={() => handleButtonPress("Normal")}
       />
     </View>
   );

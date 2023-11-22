@@ -1,203 +1,287 @@
-import * as React from "react";
-import { Text, StyleSheet, Pressable, View } from "react-native";
-import { Image } from "expo-image";
-import { useNavigation } from "@react-navigation/native";
-import PageHeader from "../components/PageHeader";
-import InputText from "../components/InputText";
-import Property1DefaultProperty2 from "../components/Property1DefaultProperty2";
-import { FontSize, FontFamily, Color } from "../GlobalStyles";
+import React, { useState } from "react";
+import {
+  View,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Pressable,
+} from "react-native";
+import { CheckBox } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { Picker } from "@react-native-picker/picker";
 
-const SignUpPage = () => {
-  const navigation = useNavigation();
+const SignUpPage = ({ navigation }) => {
+  const [isChecked1, setChecked1] = useState(false);
+  const [isChecked2, setChecked2] = useState(false);
+  const [selectedSkinType, setSelectedSkinType] = useState("Select Skin Type");
+  const [selectedSkinConcern, setSelectedSkinConcern] = useState(
+    "Select Skin Concern"
+  );
+
+  const goToHome = () => navigation.navigate("Home");
+  const goToGettingStarted4 = () => navigation.navigate("GettingStarted4");
+  const goToGettingStarted1 = () => navigation.navigate("GettingStarted1");
+  const goToLogin = () => navigation.navigate("LoginPage");
+  const goToFeed = () => navigation.navigate("Feed");
+
+
+  
 
   return (
-    <View style={styles.signUpPage}>
-      <PageHeader
-        actionButtonText="Login"
-        iconX1
-        pageHeaderPosition="absolute"
-        pageHeaderTop={60}
-        pageHeaderRight={16}
-        pageHeaderLeft={16}
-        pageHeaderMarginLeft="unset"
-        pageHeaderBackgroundColor="unset"
-        pageHeaderWidth="unset"
-        leftFontWeight="unset"
-        leftFontFamily="unset"
-        leftColor="unset"
-        leftTextAlign="unset"
-        iconXTop={0}
-        iconXLeft="50%"
-        iconXWidth="unset"
-        iconXHeight="unset"
-        iconXMarginLeft={-55}
-        rightMarginTop="unset"
-        rightTop={5}
-        rightFontWeight="unset"
-        rightFontFamily="unset"
-        rightColor="unset"
-        rightTextAlign="unset"
-        rightWidth={23}
-        rightHeight={23}
-        onLoginPress={() => navigation.navigate("LoginPage")}
-        onIconXPress={() => navigation.goBack()}
-      />
-      <InputText
-        bG={require("../assets/bg1.png")}
-        name1="Name"
-        showName
-        show={false}
-        inputTextPosition="absolute"
-        inputTextTop={167}
-        inputTextRight="unset"
-        inputTextLeft="50%"
-        inputTextHeight={50}
-        inputTextMarginLeft={-160}
-        inputTextWidth={323}
-        bGIconBorderRadius={8}
-        nameColor="#bdbdbd"
-        nameMarginTop={-9}
-        showColor="#5db075"
-        showMarginTop={-9}
-      />
-      <Text style={styles.personalInformation}>Personal Information</Text>
-      <InputText
-        bG={require("../assets/bg1.png")}
-        name1="Age"
-        showName
-        show={false}
-        inputTextPosition="absolute"
-        inputTextTop={299}
-        inputTextRight="unset"
-        inputTextLeft="50%"
-        inputTextHeight={50}
-        inputTextMarginLeft={-161}
-        inputTextWidth={323}
-        bGIconBorderRadius={8}
-        nameColor="#bdbdbd"
-        nameMarginTop={-9}
-        showColor="#5db075"
-        showMarginTop={-9}
-      />
-      <View style={styles.inputtextParent}>
-        <InputText
-          bG={require("../assets/bg1.png")}
-          name1="Gender"
-          showName
-          show={false}
-          inputTextPosition="absolute"
-          inputTextTop={0}
-          inputTextRight="unset"
-          inputTextLeft="50%"
-          inputTextHeight={50}
-          inputTextMarginLeft={-161.5}
-          inputTextWidth={323}
-          bGIconBorderRadius={8}
-          nameColor="#bdbdbd"
-          nameMarginTop={-9}
-          showColor="#5db075"
-          showMarginTop={-9}
-        />
-        <Image
-          style={styles.vectorIcon}
-          contentFit="cover"
-          source={require("../assets/vector2.png")}
-        />
-      </View>
-      <InputText
-        bG={require("../assets/bg1.png")}
-        name1="Email"
-        showName
-        show={false}
-        inputTextPosition="absolute"
-        inputTextTop={365}
-        inputTextRight="unset"
-        inputTextLeft="50%"
-        inputTextHeight={50}
-        inputTextMarginLeft={-161}
-        inputTextWidth={323}
-        bGIconBorderRadius={8}
-        nameColor="#bdbdbd"
-        nameMarginTop={-9}
-        showColor="#5db075"
-        showMarginTop={-9}
-      />
-      <InputText
-        bG={require("../assets/bg1.png")}
-        name1="Password"
-        showName
-        show
-        inputTextPosition="absolute"
-        inputTextTop={431}
-        inputTextRight="unset"
-        inputTextLeft="50%"
-        inputTextHeight={50}
-        inputTextMarginLeft={-161}
-        inputTextWidth={323}
-        bGIconBorderRadius={8}
-        nameColor="#dec2ff"
-        nameMarginTop={-9}
-        showColor="#7d70ba"
-        showMarginTop={-9}
-      />
-      <Pressable
-        onPress={() => navigation.navigate("GettingStarted4")}
-        style={styles.propertyPressable}
-      >
-        <Property1DefaultProperty2
-          buttonText="Continue"
-          continueButtonText={require("../assets/keyboard-arrow-right.png")}
-          property1DefaultProperty2Position="absolute"
-          property1DefaultProperty2Top={750}
-          property1DefaultProperty2Left={16}
-          property1DefaultProperty2Width={358}
-          keyboardArrowRightIconWidth="10.06%"
-          keyboardArrowRightIconRight="1.96%"
-          keyboardArrowRightIconLeft="87.99%"
-        />
+    <View style={styles.container}>
+      <View style={styles.navigationBar}>
+      <Pressable style={styles.subtitle} onPress={goToGettingStarted1}>
+        <Icon name="close" size={20} color="#BDBDBD" />
       </Pressable>
+        <Text style={styles.title}>Sign Up</Text>
+        <Pressable style={styles.subtitleLinks} onPress={goToLogin}>
+          <Text style={styles.subtitleLinksText}>Log In</Text>
+        </Pressable>
+      </View>
+      <ScrollView
+        style={styles.formContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        <FormSection label="Personal Information">
+          <FormField label="Full Name" placeholder="Full Name" />
+          <FormField
+            label="Age"
+            placeholder="Enter your age"
+            keyboardType="numeric"
+          />
+          <FormField
+            label="Email Address"
+            placeholder="username@email.com"
+            keyboardType="email-address"
+          />
+          <FormField
+            label="Password"
+            placeholder="Enter your password"
+            secureTextEntry
+          />
+          <FormField
+            label="Confirm Password"
+            placeholder="Confirm your password"
+            secureTextEntry
+          />
+        </FormSection>
+
+        <FormSection label="Skin Information">
+          <PickerField
+            label="Skin Type"
+            selectedValue={selectedSkinType}
+            onValueChange={(value) => setSelectedSkinType(value)}
+            items={[
+              { label: "Select Skin Type", color: "#BDBDBD", value: "" },
+              { label: "Normal", value: "Normal" },
+              { label: "Dry", value: "Dry" },
+              { label: "Sensitive", value: "Sensitive" },
+              { label: "Oily", value: "Oily" },
+              { label: "Combination", value: "Combination" },
+            ]}
+          />
+          <PickerField
+            label="Skin Concern"
+            selectedValue={selectedSkinConcern}
+            onValueChange={(value) => setSelectedSkinConcern(value)}
+            items={[
+              { label: "Select Skin Concern", color: "#BDBDBD", value: "" },
+              { label: "Acne-Care", value: "Acne-Care" },
+              { label: "Anti-ageing", value: "Anti-ageing" },
+              { label: "Brightening", value: "Brightening" },
+              { label: "Pore-Care", value: "Pore-Care" },
+              { label: "Soothing", value: "Soothing" },
+              { label: "Hyperpigmentation", value: "Hyperpigmentation" },
+            ]}
+          />
+        </FormSection>
+
+        <View style={styles.pressableContainer}>
+          <CheckBoxField
+            title="By signing up you accept the Terms of service and Privacy Policy"
+            checked={isChecked1}
+            onPress={() => setChecked1(!isChecked1)}
+          />
+          <CheckBoxField
+            title="I would like to receive your newsletter and other promotional information."
+            checked={isChecked2}
+            onPress={() => setChecked2(!isChecked2)}
+          />
+          <Pressable style={styles.signUpButton} onPress={goToGettingStarted4}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.bumpContainer}></View>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  personalInformation: {
-    top: 136,
-    left: 28,
-    fontSize: FontSize.size_xs,
-    fontWeight: "500",
-    fontFamily: FontFamily.uI16Medium,
-    color: Color.gray04,
-    textAlign: "left",
-    position: "absolute",
-  },
-  vectorIcon: {
-    height: "23.2%",
-    width: "4.18%",
-    top: "37.8%",
-    right: "4.77%",
-    bottom: "39%",
-    left: "91.05%",
-    maxWidth: "100%",
-    maxHeight: "100%",
-    position: "absolute",
-    overflow: "hidden",
-  },
-  inputtextParent: {
-    marginLeft: -160,
-    top: 233,
-    left: "50%",
-    width: 323,
-    height: 50,
-    position: "absolute",
-  },
-  signUpPage: {
-    backgroundColor: Color.white,
+  container: {
     flex: 1,
+    backgroundColor: "white",
+  },
+  navigationBar: {
+    flex: 1,
+    flexDirection: "row",
+    maxHeight: "10%", // Set to 10% of the screen height
     width: "100%",
-    height: 844,
-    overflow: "hidden",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 24,
+    backgroundColor: "#fff",
+    zIndex: 1,
+  },
+
+  formContainer: {
+    flex: 1,
+    paddingHorizontal: 40,
+    paddingTop: 20,
+    paddingBottom: 100, // Adjust the paddingBottom to provide space for the button
+  },
+  pressableContainer: {
+    flexGrow: 1,
+    justifyContent: "flex-end", // Align the content to the bottom
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "black",
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    zIndex: -1,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#BDBDBD",
+    fontWeight: "bold",
+    padding: 6,
+  },
+  subtitleLinks: {
+    fontSize: 16,
+    color: "#7D70BA",
+    fontWeight: "bold",
+  },
+  headingLabel: {
+    fontSize: 16,
+    color: "#666666",
+    marginBottom: 15,
+  },
+  label: {
+    fontSize: 14,
+    color: "#7D70BA",
+    paddingTop: 5,
+    fontWeight: "bold",
+  },
+  input: {
+    width: "100%",
+    height: 50,
+    borderColor: "#ccc",
+    color: "black",
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    marginBottom: 15,
+    fontSize: 14,
+    backgroundColor: "#F6F6F6",
+  },
+  inputContainer: {
+    borderWidth: 1,
+    borderColor: "#BDBDBD",
+    borderRadius: 16,
+    padding: 15,
+    marginBottom: 20,
+  },
+
+  picker: {
+    height: 50,
+    width: "100%",
+    fontSize: 14,
+  },
+
+  signUpButton: {
+    backgroundColor: "#93867F",
+    paddingVertical: 12,
+    borderRadius: 40,
+    marginTop: 20,
+    alignItems: "center",
+    bottom: "3%",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  checkboxContainer: {
+    backgroundColor: "transparent",
+    borderWidth: 0,
+  },
+  checkbox: {
+    margin: 0,
+    padding: 0,
+  },
+  checkboxText: {
+    fontSize: 12,
+    fontWeight: "normal",
+  },
+  bumpContainer: {
+    height: 50,
   },
 });
+
+const FormSection = ({ label, children }) => (
+  <View style={styles.inputContainer}>
+    <Text style={styles.headingLabel}>{label}</Text>
+    {children}
+  </View>
+);
+
+const FormField = ({ label, placeholder, keyboardType, secureTextEntry }) => (
+  <>
+    <Text style={styles.label}>{label}</Text>
+    <TextInput
+      style={styles.input}
+      placeholder={placeholder}
+      keyboardType={keyboardType}
+      secureTextEntry={secureTextEntry}
+    />
+  </>
+);
+
+const PickerField = ({ label, selectedValue, onValueChange, items }) => (
+  <>
+    <Text style={styles.label}>{label}</Text>
+    <Picker
+      selectedValue={selectedValue}
+      onValueChange={onValueChange}
+      style={styles.picker}
+    >
+      {items.map((item) => (
+        <Picker.Item
+          key={item.value}
+          label={item.label}
+          color={item.color}
+          value={item.value}
+        />
+      ))}
+    </Picker>
+  </>
+);
+
+const CheckBoxField = ({ title, checked, onPress }) => (
+  <CheckBox
+    title={title}
+    checked={checked}
+    onPress={onPress}
+    containerStyle={styles.checkbox}
+    textStyle={styles.checkboxText}
+  />
+);
 
 export default SignUpPage;
